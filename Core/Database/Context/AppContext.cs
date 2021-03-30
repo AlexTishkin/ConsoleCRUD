@@ -12,7 +12,6 @@ namespace Core
         public AppContext(string connectionString)
         {
             _connectionString = connectionString;
-            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
