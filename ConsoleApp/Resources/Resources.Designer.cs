@@ -61,6 +61,15 @@ namespace ConsoleApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ../../../configuration.json.
+        /// </summary>
+        internal static string Configuration_File_Path {
+            get {
+                return ResourceManager.GetString("Configuration_File_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Программа остановлена вследствие ошибки.
         /// </summary>
         internal static string Program_Main_Error {

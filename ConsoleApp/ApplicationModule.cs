@@ -10,13 +10,15 @@ namespace ConsoleApp
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<Application>();
+            builder.RegisterType<Configuration>();
             builder.RegisterType<DbInitializer>();
 
             builder.RegisterType<MenuContext>().As<IMenuContext>();
-            builder.RegisterType<DbFactory>().As<IDbFactory>();
 
             builder.RegisterType<BaseDictionaryCrudService<Genre>>().As<IBaseDictionaryCrudService<Genre>>();
             builder.RegisterType<BaseDictionaryCrudService<Author>>().As<IBaseDictionaryCrudService<Author>>();
+
+            builder.RegisterInstance(new DbFactory()).As<IDbFactory>();
         }
     }
 }

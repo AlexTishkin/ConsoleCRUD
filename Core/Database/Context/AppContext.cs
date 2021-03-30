@@ -9,9 +9,9 @@ namespace Core
         public DbSet<Author> Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
 
-        public AppContext()
+        public AppContext(string connectionString)
         {
-            _connectionString = "Data Source=DESKTOP-PS8UI7T;Initial Catalog=book_database;Integrated Security=True";
+            _connectionString = connectionString;
             Database.EnsureCreated();
         }
 
