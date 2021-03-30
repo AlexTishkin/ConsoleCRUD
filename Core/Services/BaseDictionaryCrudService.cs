@@ -1,7 +1,10 @@
 ﻿using Core.Entity;
+using Core.QueryObjects;
+using Core.ResultObjects;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Core.Database
@@ -20,6 +23,33 @@ namespace Core.Database
             using var db = _dbFactory.CreateDb();
             var entities = await db.Set<TEntity>().ToListAsync();
             return entities;
+        }
+
+        public async Task<PagedResult<TEntity>> GetListAsync(Query<DictionaryFilter> query)
+        {
+            using var db = _dbFactory.CreateDb();
+
+            // Сортировка
+            var q = db.Set<TEntity>()
+                .OrderBy(x => x.Name)
+                .AsQueryable();
+
+            // Фильтр
+            if (query.Filter?.Name != null)
+                q = q.Where(x => x.Name.Contains(query.Filter.Name));
+
+            // Пагинация
+            var entities = await q
+                .Skip(query.Pagination.Skip)
+                .Take(query.Pagination.Take)
+                .ToListAsync();
+
+            var result = new PagedResult<TEntity>
+            {
+                Result = entities,
+                Pagination = query.Pagination
+            };
+            return result;
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)

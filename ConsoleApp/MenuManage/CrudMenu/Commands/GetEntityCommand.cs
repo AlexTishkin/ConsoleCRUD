@@ -23,6 +23,9 @@ namespace ConsoleApp.MenuManage.CrudMenu.Commands
 
             var entity = await _service.GetByIdAsync(id);
             Console.WriteLine($"ID: {entity.Id}, Name: {entity.Name}");
+
+            Console.WriteLine("Для продолжения нажмите любую клавишу...");
+            Console.ReadKey();
         }
     }
 }
