@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using ConsoleApp.MenuManage;
 using Core;
-using Core.Database;
+using Infrastructure.Services;
 
 namespace ConsoleApp
 {

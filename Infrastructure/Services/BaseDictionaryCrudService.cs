@@ -1,4 +1,5 @@
-﻿using Core.Entity;
+﻿using Core;
+using Core.Entity;
 using Core.QueryObjects;
 using Core.ResultObjects;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Core.Database
+namespace Infrastructure.Services
 {
     public class BaseDictionaryCrudService<TEntity> : IBaseDictionaryCrudService<TEntity> where TEntity : DictionaryEntity
     {
