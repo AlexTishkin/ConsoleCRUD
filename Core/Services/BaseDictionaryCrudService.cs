@@ -38,6 +38,8 @@ namespace Core.Database
             if (query.Filter?.Name != null)
                 q = q.Where(x => x.Name.Contains(query.Filter.Name));
 
+            var count = await q.CountAsync().ConfigureAwait(false);
+
             // Пагинация
             var entities = await q
                 .Skip(query.Pagination.Skip)
@@ -47,7 +49,8 @@ namespace Core.Database
             var result = new PagedResult<TEntity>
             {
                 Result = entities,
-                Pagination = query.Pagination
+                Pagination = query.Pagination,
+                Total = count
             };
             return result;
         }

@@ -10,5 +10,6 @@ namespace Core.ResultObjects
 
         public Pagination Pagination { get; set; }
 
+        public int Total { get; set; }
     }
 }
